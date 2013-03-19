@@ -1,43 +1,15 @@
 #!/usr/bin/perl
 
+# This duplicates the first test, using the original, example TOML,
+# the turns that parsed structure into toml and reparses it, thus
+# ensuring a round-trip.
+
 use strict;
 use Test::More tests => 2;
 
 use_ok("TOML");
 
-# Original structre
-my $toml = q{# This is a TOML document. Boom.
-
-title = "TOML Example"
-
-[owner]
-name = "Tom Preston-Werner"
-organization = "GitHub"
-bio = "GitHub Cofounder & CEO\nLikes tater tots and beer."
-dob = 1979-05-27T07:32:00Z # First class dates? Why not?
-
-[database]
-server = "192.168.1.1"
-ports = [ 8001, 8001, 8002 ]
-connection_max = 5000
-enabled = true
-
-[servers]
-
-  # You can indent as you please. Tabs or spaces. TOML don't care.
-  [servers.alpha]
-  ip = "10.0.0.1"
-  dc = "eqdc10"
-
-  [servers.beta]
-  ip = "10.0.0.2"
-  dc = "eqdc10"
-
-[clients]
-data = [ ["gamma", "delta"], [1, 2] ] # just an update to make sure parsers support it
-};
-
-# Expected structure
+# Structure from mojombo/toml
 my $data = {
           'database' => {
                         'ports' => [
@@ -83,5 +55,6 @@ Likes tater tots and beer.',
 
 
 
-my $new = from_toml($toml);
-is_deeply($data, $new, "Structure matches example data");
+# Check that parsing the newly generated toml produces the same data structure
+my $new_data = from_toml(to_toml($data));
+is_deeply($data, $new_data, "Parsing newly generated structure results in same structure");

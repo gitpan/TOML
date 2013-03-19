@@ -1,6 +1,9 @@
 Makefile.PL
 MANIFEST
 README
+t/broken.t
 t/example.t
+t/reparse.t
+t/to_toml.t
 TOML.pm
 META.yml                                 Module meta-data (added by MakeMaker)
