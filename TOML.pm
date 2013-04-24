@@ -29,9 +29,20 @@ use B;
 use Carp qw(croak);
 use Text::Balanced qw(extract_bracketed);
 
-$VERSION = "0.91";
+$VERSION = "0.92";
 @EXPORT = qw(from_toml to_toml);
 $SYNTAX_ERROR = q(Syntax error);
+
+my %UNESCAPE = (
+    q{b} => "\x08",
+    q{t} => "\x09",
+    q{n} => "\x0a",
+    q{f} => "\x0c",
+    q{r} => "\x0d",
+    q{"} => "\x22",
+    q{/} => "\x2f",
+    q{\\} => "\x5c",
+);
 
 sub to_toml {
     my $stuff = shift;
@@ -133,17 +144,22 @@ sub from_toml {
         my $string_start = $string;
 
         # Strings
-        if ($string =~ s/^(\S+)\s*=\s*"([^"]*)"\s*//) {
+        if ($string =~ s/^(\S+)\s*=\s*"(.+)"\s*//) {
             my $key = "$1";
             my $val = "$2";
             $val =~ s/^"//;
             $val =~ s/"$//;
-            $val =~ s/\\0/\x00/g;
-            $val =~ s/\\t/\x09/g;
-            $val =~ s/\\n/\x0a/g;
-            $val =~ s/\\r/\x0d/g;
-            $val =~ s/\\"/\x22/g;
-            $val =~ s/\\\\/\x5c/g;
+            $val =~ s!
+                \\([btnfr"/\\])
+                |
+                \\u([0-9A-Fa-f]{4})
+            !
+                if (defined $1) {
+                    $UNESCAPE{$1}
+                } else {
+                    pack "U", hex $2;
+                }
+            !gex;
 
             if ($cur) {
                 $cur->{ $key } = $val;
@@ -291,5 +307,12 @@ Darren Chamberlain <darren@cpan.org>
 
 =head1 CONTRIBUTORS
 
-  * Tokuhiro Matsuno <tokuhirom@cpan.org>
-  * Matthias Bethke <matthias@towiski.de>
+=over 4
+
+=item Tokuhiro Matsuno <tokuhirom@cpan.org>
+
+=item Matthias Bethke <matthias@towiski.de>
+
+=item Sergey Romanov <complefor@rambler.ru>
+
+=back

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               TOML
-version:            0.91
+version:            0.92
 abstract:           Parser for Tom's Obvious, Minimal Language.
 author:
     - darren chamberlain <darren@cpan.org>
