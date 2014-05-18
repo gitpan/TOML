@@ -1,21 +1,43 @@
---- #YAML:1.0
-name:               TOML
-version:            0.92
-abstract:           Parser for Tom's Obvious, Minimal Language.
+---
+abstract: "Parser for Tom's Obvious, Minimal Language."
 author:
-    - darren chamberlain <darren@cpan.org>
-license:            unknown
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
+  - 'Darren Chamberlain <darren@cpan.org>'
 build_requires:
-    ExtUtils::MakeMaker:  0
-requires:  {}
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.56
+  Test::More: '0'
+configure_requires:
+  Module::Build::Tiny: '0.035'
+  perl: 5.008_001
+dynamic_config: 0
+generated_by: 'Minilla/v1.0.0, CPAN::Meta::Converter version 2.141170'
+license: gpl
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: '1.4'
+name: TOML
+no_index:
+  directory:
+    - t
+    - xt
+    - inc
+    - share
+    - eg
+    - examples
+    - author
+    - builder
+provides:
+  TOML:
+    file: lib/TOML.pm
+    version: '0.93'
+requires:
+  TOML::Parser: '0'
+  parent: '0'
+resources:
+  bugtracker: https://github.com/karupanerura/toml/issues
+  homepage: https://github.com/karupanerura/toml
+  repository: git://github.com/karupanerura/toml.git
+version: '0.93'
+x_contributors:
+  - 'Sergey Romanov <Sergey.Romanov@emc.com>'
+  - 'tokuhirom <tokuhirom@gmail.com>'
+  - 'Darren Chamberlain <dlc@sevenroot.org>'
+  - 'karupanerura <karupa@cpan.org>'
