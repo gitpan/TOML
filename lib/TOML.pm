@@ -4,22 +4,9 @@ package TOML;
 # TOML - Parser for Tom's Obvious, Minimal Language.
 #
 # Copyright (C) 2013 Darren Chamberlain <darren@cpan.org>
-#
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License as
-# published by the Free Software Foundation; version 2.
-#
-# This program is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-# General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-# 02111-1301 USA
 # -------------------------------------------------------------------
 
+use 5.008005;
 use strict;
 use warnings;
 use parent qw(Exporter);
@@ -28,9 +15,9 @@ our ($VERSION, @EXPORT, @_NAMESPACE, $PARSER);
 
 use B;
 use Carp qw(croak);
-use TOML::Parser;
+use TOML::Parser 0.03;
 
-$VERSION = "0.93";
+$VERSION = "0.94";
 @EXPORT = qw(from_toml to_toml);
 $PARSER = TOML::Parser->new(inflate_boolean  => sub { $_[0] });
 
@@ -194,6 +181,22 @@ string.
 =head1 SEE ALSO
 
 L<TOML::Parser>
+
+=head1 LICENSE
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License as
+published by the Free Software Foundation; version 2.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+02111-1301 USA
 
 =head1 AUTHOR
 

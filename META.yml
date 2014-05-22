@@ -27,15 +27,16 @@ no_index:
 provides:
   TOML:
     file: lib/TOML.pm
-    version: '0.93'
+    version: '0.94'
 requires:
-  TOML::Parser: '0'
+  TOML::Parser: '0.03'
   parent: '0'
+  perl: '5.008005'
 resources:
   bugtracker: https://github.com/karupanerura/toml/issues
   homepage: https://github.com/karupanerura/toml
   repository: git://github.com/karupanerura/toml.git
-version: '0.93'
+version: '0.94'
 x_contributors:
   - 'Sergey Romanov <Sergey.Romanov@emc.com>'
   - 'tokuhirom <tokuhirom@gmail.com>'
