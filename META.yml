@@ -8,7 +8,7 @@ configure_requires:
   Module::Build::Tiny: '0.035'
   perl: 5.008_001
 dynamic_config: 0
-generated_by: 'Minilla/v1.0.0, CPAN::Meta::Converter version 2.141170'
+generated_by: 'Minilla/v2.1.1, CPAN::Meta::Converter version 2.142690'
 license: gpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -27,16 +27,16 @@ no_index:
 provides:
   TOML:
     file: lib/TOML.pm
-    version: '0.94'
+    version: '0.95'
 requires:
-  TOML::Parser: '0.03'
+  TOML::Parser: '0.04'
   parent: '0'
   perl: '5.008005'
 resources:
   bugtracker: https://github.com/karupanerura/toml/issues
   homepage: https://github.com/karupanerura/toml
   repository: git://github.com/karupanerura/toml.git
-version: '0.94'
+version: '0.95'
 x_contributors:
   - 'Sergey Romanov <Sergey.Romanov@emc.com>'
   - 'tokuhirom <tokuhirom@gmail.com>'
